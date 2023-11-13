@@ -1,11 +1,15 @@
 package com.example.bean.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
+
 @Data
 public class AccountInfo {
     @TableId(value = "id",type = IdType.AUTO)
@@ -21,6 +25,12 @@ public class AccountInfo {
     private LocalDateTime registrationDate;
     private LocalDateTime lastLogin;
     private boolean active;
+
+    @TableField(fill = FieldFill.INSERT)
+    private Date createTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
 
     // 枚举类型表示性别
     public enum Gender {
