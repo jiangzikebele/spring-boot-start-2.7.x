@@ -1,9 +1,6 @@
 package com.example.bean.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -25,6 +22,9 @@ public class AccountInfo {
     private LocalDateTime registrationDate;
     private LocalDateTime lastLogin;
     private boolean active;
+
+    @TableLogic
+    private Integer delFlag;
 
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;
