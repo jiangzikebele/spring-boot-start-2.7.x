@@ -1,7 +1,10 @@
 package com.example.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.bean.entity.AccountInfo;
 import com.github.yulichang.base.MPJBaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
-public interface AccountInfoMapper extends BaseMapper, MPJBaseMapper {
+@Mapper
+public interface AccountInfoMapper extends BaseMapper<AccountInfo>, MPJBaseMapper<AccountInfo>{
 }
