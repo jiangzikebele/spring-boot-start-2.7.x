@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.AccountInfoMapper">
+
+    <sql id="conditionWhere">
+        <where>
+            <if test="username != null and username != ''">
+                and username like CONCAT('%', #{username}, '%')
+            </if>
+            <if test="fullName != null and fullName != ''">
+                and fullName like CONCAT('%', #{fullName}, '%')
+            </if>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="active != null">
+                and active = #{active}
+            </if>
+            <if test="registrationDate != null">
+                and registration_date = #{registrationDate}
+            </if>
+            <if test="gender != null">
+                and gender = #{gender}
+            </if>
+        </where>
+    </sql>
+
+    <!-- 查询所有数据 -->
+    <select id="queryAll" resultType="com.example.bean.entity.AccountInfo">
+        SELECT * FROM account_info
+        <include refid="conditionWhere" />
+    </select>
+
+
+
+    <!-- 插入数据 -->
+    <insert id="save" parameterType="com.example.bean.entity.AccountInfo">
+        INSERT INTO account_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="username != null and username != ''">username,</if>
+            <if test="password != null and password != ''">password,</if>
+            <if test="fullName != null and fullName != ''">full_name,</if>
+            <if test="gender != null">gender,</if>
+            <if test="dateOfBirth != null">dateOf_birth,</if>
+            <if test="email != null and email != ''">email,</if>
+            <if test="phoneNumber != null and phoneNumber != ''">phone_number,</if>
+            <if test="address != null and address != ''">address,</if>
+            <if test="registrationDate != null">registration_date,</if>
+            <if test="lastLogin != null">last_login,</if>
+            <if test="active != null">active,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="username != null and username != ''">#{username},</if>
+            <if test="password != null and password != ''">#{password},</if>
+            <if test="fullName != null and fullName != ''">#{fullName},</if>
+            <if test="gender != null">#{gender},</if>
+            <if test="dateOfBirth != null">#{dateOfBirth},</if>
+            <if test="email != null and email != ''">#{email},</if>
+            <if test="phoneNumber != null and phoneNumber != ''">#{phoneNumber},</if>
+            <if test="address != null and address != ''">#{address},</if>
+            <if test="registrationDate != null">#{registrationDate},</if>
+            <if test="lastLogin != null">#{lastLogin},</if>
+            <if test="active != null">#{active},</if>
+        </trim>
+    </insert>
+
+    <!-- 更新数据 -->
+    <update id="edit" parameterType="com.example.bean.entity.AccountInfo">
+        UPDATE account_info
+        <set>
+            <if test="entity.username != null and entity.username != ''">username = #{entity.username},</if>
+            <if test="entity.password != null and entity.password != ''">password = #{entity.password},</if>
+            <if test="entity.fullName != null and entity.fullName != ''">full_name = #{entity.fullName},</if>
+            <if test="entity.gender != null">gender = #{entity.gender},</if>
+            <if test="entity.dateOfBirth != null">dateOf_birth = #{entity.dateOfBirth},</if>
+            <if test="entity.email != null and entity.email != ''">email = #{entity.email},</if>
+            <if test="entity.phoneNumber != null and entity.phoneNumber != ''">phone_number = #{entity.phoneNumber},</if>
+            <if test="entity.address != null and entity.address != ''">address = #{entity.address},</if>
+            <if test="entity.registrationDate != null">registration_date = #{entity.registrationDate},</if>
+            <if test="entity.lastLogin != null">last_login = #{entity.lastLogin},</if>
+            <if test="entity.active != null">active = #{entity.active},</if>
+            <!-- 其他需要更新的字段及其值 -->
+        </set>
+        <where>
+            <if test="query.id != null">id = #{query.id}</if>
+            <if test="query.username != null and query.username != ''">username = #{query.username},</if>
+            <if test="query.password != null and query.password != ''">password = #{query.password},</if>
+            <if test="query.fullName != null and query.fullName != ''">full_name = #{query.fullName},</if>
+            <if test="query.gender != null">gender = #{query.gender},</if>
+            <if test="query.dateOfBirth != null">dateOf_birth = #{query.dateOfBirth},</if>
+            <if test="query.email != null and query.email != ''">email = #{query.email},</if>
+            <if test="query.phoneNumber != null and query.phoneNumber != ''">phone_number = #{query.phoneNumber},</if>
+            <if test="query.address != null and query.address != ''">address = #{query.address},</if>
+            <if test="query.registrationDate != null">registration_date = #{query.registrationDate},</if>
+            <if test="query.lastLogin != null">last_login = #{query.lastLogin},</if>
+            <if test="query.active != null">active = #{query.active},</if>
+            <!-- 其他更新条件字段 -->
+        </where>
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id="remove">
+        DELETE FROM account_info
+        <include refid="conditionWhere" />
+    </delete>
+
+</mapper>

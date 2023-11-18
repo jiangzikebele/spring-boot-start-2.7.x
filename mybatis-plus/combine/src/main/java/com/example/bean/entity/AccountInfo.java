@@ -1,6 +1,7 @@
 package com.example.bean.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.github.javafaker.Bool;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ public class AccountInfo {
     private String address;
     private LocalDateTime registrationDate;
     private LocalDateTime lastLogin;
-    private boolean active;
+    private Boolean active;
 
     @TableLogic
     private Integer delFlag;
